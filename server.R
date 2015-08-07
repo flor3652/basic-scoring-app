@@ -1,43 +1,33 @@
 library(shiny)
 
-classData <- numeric()
-total <- 300 # The total number of points on the test
-classData[1] <- 0
-
 shinyServer(function(input, output){
   
-  missed <- reactive({
-    eval(parse(text=input$numMiss))
+  #this is to control what users see depending on the pressing of the "Next" button
+  output$ui <- renderUI({
+    if(length(input$trialText)==1) return()
+      
+    actionButton("test", "0")
   })
   
-  output$sumMissed <- renderPrint({
-    cat("Total Missed:", missed())
+  output$valueOfNext <- renderText({
+    input$Next
   })
   
-  output$score <- renderPrint({
-    cat(total-missed(), "/", total, " = ", (total-missed())/total, sep="")
-  })
-  
-  entered_score <- reactive({
-    (total-missed())/total
-  })
-  
-  update_data <- reactive({
-    input$submitButton
-    
-    isolate(
-    classData[input$submitButton] <<- entered_score()
+  output$testSwitch <- renderText({
+    switch((input$Next+1),
+           1,
+           2,
+           3
     )
-    
-    classData
   })
   
-  output$data <- renderText({
-    update_data()
+  output$testDynBut <- renderText({
+    input$test
   })
   
-  output$dataPlot <- renderPlot({
-    hist(update_data(), breaks = c(0, .6, .7, .8, .9, 1), xlim = c(.5,1), freq=TRUE)
+  output$lengthOfString <- renderText({
+    input$Next
+    c("The string is ", length(input$trialText), "characters long.")
   })
   
 })

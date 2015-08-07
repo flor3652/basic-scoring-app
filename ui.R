@@ -1,25 +1,21 @@
 library(shiny)
 
-shinyUI(pageWithSidebar(
+shinyUI(fluidPage(
   
-  headerPanel("Basic Scoring App"),
+  titlePanel("Basic Scoring App"),
   
-  sidebarPanel(
-    textInput("p1name", "First player name", ""),
-    br(),
-    br(),
-    textInput("p2name", "Second player name", ""),
-    br(),
-    br(),
-    numericInput("ptw", "How many points are needed to win?", "10"),
-    br()
-  ),
+  textOutput("valueOfNext"),
   
-  mainPanel(
-    plotOutput("dataPlot"),
-    br(),
-    textOutput("data")
-    
-  )
+  textInput("trialText", "Enter text here", NULL),
+  
+  actionButton("Next", "Next"),
+  
+  textOutput("testSwitch"),
+  
+  uiOutput("ui"),
+  
+  textOutput("testDynBut"),
+  
+  textOutput("lengthOfString")
   
 ))
