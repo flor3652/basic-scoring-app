@@ -4,18 +4,18 @@ shinyUI(fluidPage(
   
   titlePanel("Basic Scoring App"),
   
-  textOutput("valueOfNext"),
-  
-  textInput("trialText", "Enter text here", NULL),
-  
-  actionButton("Next", "Next"),
-  
-  textOutput("testSwitch"),
-  
-  uiOutput("ui"),
-  
-  textOutput("testDynBut"),
-  
-  textOutput("lengthOfString")
+  sidebarLayout(
+    sidebarPanel(
+      textInput("name1", "What is the name of the first player?", ""),
+      textInput("name2", "What is the name of the second player?", ""),
+      sliderInput("winningScore", "How many points are needed to win?", 60, 120, 60, 120),
+      actionButton("gogogo", "annnnnd Action!")
+    ),
+    
+    mainPanel(
+      textOutput("name1out"),
+      textOutput("name2out")
+    )
+  )
   
 ))
