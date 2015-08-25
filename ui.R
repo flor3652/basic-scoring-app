@@ -13,8 +13,27 @@ shinyUI(fluidPage(
     ),
     
     mainPanel(
+      br(),
+      br(),
       textOutput("name1out"),
-      textOutput("name2out")
+      actionButton("p11", "+1"),
+      actionButton("p15", "+5"),
+      actionButton("p110", "+10"),
+      actionButton("reset1", "Reset Score"),
+      br(),
+      br(),
+      br(),
+      br(),
+      textOutput("name2out"),
+      actionButton("p21", "+1"),
+      actionButton("p25", "+5"),
+      actionButton("p210", "+10"),
+      actionButton("reset2", "Reset Score"),
+      br(),
+      br(),
+      br(),
+      br(),
+      textOutput("lengthname1")
     )
   )
   
